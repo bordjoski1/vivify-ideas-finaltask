@@ -4,18 +4,19 @@ import PropTypes from 'prop-types';
 import MovieCard from './MovieCard';
 import AddMovies from './AddMovie';
 
-const getMovies = movies => (
+const getMovies = (movies,removeMovie) => (
     <div className="card-deck">
     {movies.map(movie => (
-      <MovieCard key={movie.id} movie={movie} />
+      <MovieCard key={movie.id} movie={movie}
+      removeMovie={removeMovie}/>
     ))}
   </div>
 );
 
-const MovieList = ({ movies, setMovies }) =>{
+const MovieList = ({ movies, setMovies,removeMovie }) =>{
   return (
     <div>
-      {getMovies(movies)}
+      {getMovies(movies,removeMovie)}
       <AddMovies movies={movies}
       setMovies={setMovies}/>
     </div>
@@ -27,7 +28,7 @@ MovieList.defaultProps = {
 };
 
 MovieList.propTypes = {
-  movies: PropTypes.array,
+  movies: PropTypes.array
 };
 
 export default MovieList;
